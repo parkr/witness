@@ -21,7 +21,7 @@ module ChatLogServer
         message: params["text"],
         at: Time.parse(params["time"])
       }).save!
-      params.delete('token')
+      params.delete('access_token')
       params
     end
 
