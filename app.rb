@@ -63,10 +63,29 @@ class ChatLogServerApp < Sinatra::Base
         path
       end
     end
+
+    def message_url(message)
+      identifier = case message
+      when Message
+        message.id
+      when Fixnum
+        message
+      end
+      "/messages/#{identifier}"
+    end
   end
 
   get '/api/auth/failure' do
     halt 403, {'Content-Type' => 'text/plain'}, "Sorry, you're not authorized to do that."
+  end
+
+  get('/messages/:id') do |id|
+    begin
+      @m = Message.find(id.to_i)
+      erb :show
+    rescue ActiveRecord::RecordNotFound
+      Proc.new { 404 }.call
+    end
   end
 
   get(/.+/) do

@@ -1,1 +1,6 @@
-Nothing to see here...
+<h1 id="#jekylls_last_10_messages">latest 10 messages in #jekyll</h1>
+<pre>
+  <% Message.latest(10).each do |m| %>
+  [<%= m.at.xmlschema %>] <%= m.author %>: <%= m.message %>
+  <% end %>
+</pre>
