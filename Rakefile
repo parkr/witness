@@ -21,7 +21,7 @@ end
 
 desc "Open an irb session preloaded with this library"
 task :console do
-  sh "irb -rubygems -r ./lib/chat-log-server.rb"
+  sh "irb -rubygems -r ./lib/chat_log_server.rb"
 end
 
 require 'rspec/core/rake_task'
