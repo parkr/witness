@@ -71,7 +71,7 @@ class ChatLogServerApp < Sinatra::Base
 
   get(/.+/) do
     if ChatLogServer::Api.can_handle?(request.path)
-      #protected! unless request.path.include?("api/auth/failure")
+      protected! unless request.path.include?("api/auth/failure")
       json ChatLogServer::Api.handle(request, params)
     else
       send_sinatra_file(request.path) {404}
@@ -80,7 +80,7 @@ class ChatLogServerApp < Sinatra::Base
 
   post(/.+/) do
     if ChatLogServer::Api.can_handle?(request.path)
-      #protected! unless request.path.include?("api/auth/failure")
+      protected! unless request.path.include?("api/auth/failure")
       json ChatLogServer::Api.handle(request, params)
     else
       json({:foo => 'bar'}, :content_type => :js)
