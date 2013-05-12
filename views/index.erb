@@ -1,6 +1,6 @@
 <h1 id="#jekylls_last_20_messages">latest 20 messages in #jekyll</h1>
 <pre>
   <% Message.latest(20).each do |m| %>
-  [<%= m.at.xmlschema %>] <%= m.author %>: <%= m.message %>
+  <a href="<%= message_url(m) %>">+</a> [<%= m.at.xmlschema %>] <%= m.author %>: <%= m.message %>
   <% end %>
 </pre>
