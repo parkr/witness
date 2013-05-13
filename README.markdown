@@ -17,10 +17,12 @@ You're rearing to go!
 
 Send HTTP POST requests to `/api/messages/log` with the following JSON-encoded data:
 
-- room: <room-name>
-- author: <author>
-- message: <message>
-- time: <time-message-was-sent>
+    {
+        room: <room-name>,
+        author: <author>,
+        message: <message>,
+        time: <time-message-was-sent>
+    }
 
 To fetch the latest messages in JSON, send an HTTP GET request to `/api/messages/latest`.
 You can optionally provide a `limit` value in the GET query string.
