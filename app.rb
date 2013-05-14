@@ -19,6 +19,7 @@ class ChatLogServerApp < Sinatra::Base
     set :public_folder, Proc.new { File.join(root, "public") }
     set :partial_underscores, true
     set :scss, { :style => :compact, :debug_info => false }
+    set :default_room, "#jekyll"
     set :database, "mysql2://#{ChatLogServer.config('username')}:#{ChatLogServer.config('password')}"+
                     "@#{ChatLogServer.config('host')}:#{ChatLogServer.config('port')}/#{ChatLogServer.config('database')}"
   end
@@ -72,6 +73,10 @@ class ChatLogServerApp < Sinatra::Base
         message
       end
       "/messages/#{identifier}"
+    end
+
+    def current_room
+      params[:room] || settings.default_room
     end
   end
 
