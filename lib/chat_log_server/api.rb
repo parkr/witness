@@ -6,6 +6,13 @@ module ChatLogServer
       "/api/messages/latest" => 'messages_latest'
     }
 
+    FORBIDDEN = {
+      :error => {
+        :message => "Forbidden",
+        :code    => 403
+      }
+    }
+
     def self.can_handle?(path)
       path["/api"] && ENDPOINTS.keys.include?(path)
     end

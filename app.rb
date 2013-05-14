@@ -76,7 +76,11 @@ class ChatLogServerApp < Sinatra::Base
   end
 
   get '/api/auth/failure' do
-    halt 403, {'Content-Type' => 'text/plain'}, "Sorry, you're not authorized to do that."
+    if ChatLogServer::Api.can_handle?(request.path)
+      halt 403, json(ChatLogServer::Api::FORBIDDEN)
+    else
+      halt 403, {'Content-Type' => 'text/plain'}, "Sorry, you're not authorized to do that."
+    end
   end
 
   get('/messages/:id') do |id|
