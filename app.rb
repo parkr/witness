@@ -111,7 +111,10 @@ class ChatLogServerApp < Sinatra::Base
       protected! unless request.path.include?("api/auth/failure")
       json ChatLogServer::Api.handle(request, params)
     else
-      json({:foo => 'bar'}, :content_type => :js)
+      json({:error => {
+        :message => "Not Found",
+        :code    => 404
+      }}, :content_type => :js)
     end
   end
 
