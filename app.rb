@@ -75,8 +75,16 @@ class ChatLogServerApp < Sinatra::Base
       "/messages/#{identifier}"
     end
 
+    def room_name(input)
+      if room_name[0] != "#"
+        "##{room_name}"
+      else
+        room_name
+      end
+    end
+
     def current_room
-      params[:room] || settings.default_room
+      room_name(params[:room] || settings.default_room)
     end
   end
 
