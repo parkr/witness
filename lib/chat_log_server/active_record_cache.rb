@@ -1,4 +1,4 @@
-module ChatLogServer
+module Witness
   module ActiveRecordCache
     def self.included(klass)
       def klass.enable_query_caching

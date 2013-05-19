@@ -1,4 +1,4 @@
-module ChatLogServer
+module Witness
   module Api
     ENDPOINTS = {
       "/api/auth/failure"    => 'forbidden',

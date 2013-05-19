@@ -1,4 +1,4 @@
-module ChatLogServer
+module Witness
   module Helpers
     module Paths
       def erb_path(path)

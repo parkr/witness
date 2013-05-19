@@ -1,6 +1,6 @@
 require 'cgi'
 
-module ChatLogServer
+module Witness
   module Helpers
     module Urls
       def message_url(message)

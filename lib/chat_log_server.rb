@@ -4,7 +4,7 @@ require 'safe_yaml'
 require 'active_record'
 require 'time'
 
-module ChatLogServer
+module Witness
   ROOT = File.expand_path("../../", __FILE__)
 
   def self.load_config_file(filename)

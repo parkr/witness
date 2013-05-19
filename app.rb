@@ -10,11 +10,11 @@ require 'sinatra/activerecord'
 $:.unshift(File.join(File.dirname(__FILE__), 'lib'))
 require 'chat_log_server'
 
-class ChatLogServerApp < Sinatra::Base
+class WitnessApp < Sinatra::Base
 
   configure do
     Compass.configuration do |config|
-      config.project_path  = ChatLogServer.root
+      config.project_path  = Witness.root
       config.sass_dir      = File.join('views', 'stylesheets')
       config.line_comments = false
       config.output_style  = :nested
@@ -26,18 +26,18 @@ class ChatLogServerApp < Sinatra::Base
     set :public_folder, Proc.new { File.join(root, "public") }
     set :partial_underscores, true
     set :scss, Compass.sass_engine_options
-    set :logged_rooms,  ChatLogServer.config('logged_rooms').to_a
-    set :default_room,  ChatLogServer.config('default_room').to_s
-    set :message_limit, ChatLogServer.config('message_print_limit').to_i
-    set :database, "mysql2://#{ChatLogServer.config('username')}:#{ChatLogServer.config('password')}"+
-                    "@#{ChatLogServer.config('host')}:#{ChatLogServer.config('port')}/#{ChatLogServer.config('database')}"
+    set :logged_rooms,  Witness.config('logged_rooms').to_a
+    set :default_room,  Witness.config('default_room').to_s
+    set :message_limit, Witness.config('message_print_limit').to_i
+    set :database, "mysql2://#{Witness.config('username')}:#{Witness.config('password')}"+
+                    "@#{Witness.config('host')}:#{Witness.config('port')}/#{Witness.config('database')}"
   end
 
   helpers ::Sinatra::Partial::Helpers
   helpers ::Sinatra::JSON
-  helpers ChatLogServer::Helpers::Auth
-  helpers ChatLogServer::Helpers::Paths
-  helpers ChatLogServer::Helpers::Urls
+  helpers Witness::Helpers::Auth
+  helpers Witness::Helpers::Paths
+  helpers Witness::Helpers::Urls
   helpers do
     def partial(page, options={})
       erb page, options.merge!(:layout => false)
@@ -63,8 +63,8 @@ class ChatLogServerApp < Sinatra::Base
   end
 
   get '/api/auth/failure' do
-    if ChatLogServer::Api.can_handle?(request.path)
-      halt 403, json(ChatLogServer::Api::FORBIDDEN)
+    if Witness::Api.can_handle?(request.path)
+      halt 403, json(Witness::Api::FORBIDDEN)
     else
       halt 403, {'Content-Type' => 'text/plain'}, "Sorry, you're not authorized to do that."
     end
@@ -108,18 +108,18 @@ class ChatLogServerApp < Sinatra::Base
   end
 
   get(/.+/) do
-    if ChatLogServer::Api.can_handle?(request.path)
+    if Witness::Api.can_handle?(request.path)
       protected! unless request.path.include?("api/auth/failure")
-      json ChatLogServer::Api.handle(request, params)
+      json Witness::Api.handle(request, params)
     else
       send_sinatra_file(request.path) {404}
     end
   end
 
   post(/.+/) do
-    if ChatLogServer::Api.can_handle?(request.path)
+    if Witness::Api.can_handle?(request.path)
       protected! unless request.path.include?("api/auth/failure")
-      json ChatLogServer::Api.handle(request, params)
+      json Witness::Api.handle(request, params)
     else
       json({:error => {
         :message => "Not Found",
@@ -133,11 +133,11 @@ class ChatLogServerApp < Sinatra::Base
   end
 
   def send_sinatra_file(path, &missing_file_block)
-    if File.exist?(File.join(ChatLogServer.root, 'public', static_path(path)))
+    if File.exist?(File.join(Witness.root, 'public', static_path(path)))
       send_file path
-    elsif File.exist?(File.join(ChatLogServer.root, 'views', erb_path(path)))
+    elsif File.exist?(File.join(Witness.root, 'views', erb_path(path)))
       erb erb_path(path).gsub(/\.erb$/, '').to_sym
-    elsif File.extname(path) == '.css' && File.exist?(File.join(ChatLogServer.root, 'views', 'stylesheets', scss_path(path)))
+    elsif File.extname(path) == '.css' && File.exist?(File.join(Witness.root, 'views', 'stylesheets', scss_path(path)))
       content_type 'text/css', :charset => 'utf-8'
       scss :"stylesheets/#{scss_path(path).gsub(/\.scss$/, '')}", Compass.sass_engine_options
     else

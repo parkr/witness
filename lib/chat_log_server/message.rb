@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  include ChatLogServer::ActiveRecordCache
+  include Witness::ActiveRecordCache
 
   attr_accessible :room, :author, :message, :at
 

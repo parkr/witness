@@ -1,8 +1,8 @@
-module ChatLogServer
+module Witness
   module Helpers
     module Auth
       def valid_access_token
-        ChatLogServer.config('access_tokens').include?(params[:access_token])
+        Witness.config('access_tokens').include?(params[:access_token])
       end
 
       def protected!
