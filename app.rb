@@ -13,12 +13,18 @@ require 'chat_log_server'
 class ChatLogServerApp < Sinatra::Base
 
   configure do
+    Compass.configuration do |config|
+      config.project_path  = ChatLogServer.root
+      config.sass_dir      = File.join('views', 'stylesheets')
+      config.line_comments = false
+      config.output_style  = :nested
+    end
     register Sinatra::Partial
     register Sinatra::ActiveRecordExtension
     set :partial_template_engine, :erb
     set :public_folder, Proc.new { File.join(root, "public") }
     set :partial_underscores, true
-    set :scss, { :style => :compact, :debug_info => false }
+    set :scss, Compass.sass_engine_options
     set :default_room, "#jekyll"
     set :database, "mysql2://#{ChatLogServer.config('username')}:#{ChatLogServer.config('password')}"+
                     "@#{ChatLogServer.config('host')}:#{ChatLogServer.config('port')}/#{ChatLogServer.config('database')}"
@@ -26,6 +32,8 @@ class ChatLogServerApp < Sinatra::Base
 
   helpers ::Sinatra::Partial::Helpers
   helpers ::Sinatra::JSON
+  helpers ChatLogServer::Helpers::Auth
+  helpers ChatLogServer::Helpers::Paths
   helpers do
     def partial(page, options={})
       html page, options.merge!(:layout => false)
@@ -34,34 +42,6 @@ class ChatLogServerApp < Sinatra::Base
     def load_if_exists(file)
       if File.exists?(file) && File.file?(file)
         File.read(file)
-      end
-    end
-
-    def valid_access_token
-      ChatLogServer.config('access_tokens').include?(params[:access_token])
-    end
-
-    def protected!
-      redirect '/api/auth/failure' unless valid_access_token
-    end
-
-    def erb_path(path)
-      if path.match(/^\/$/)
-        "index.erb"
-      else
-        if !path.match(/\.erb$/)
-          "#{path.gsub(File.extname(path), '')}.erb"
-        else
-          path
-        end
-      end
-    end
-
-    def static_path(path)
-      if path =~ /\/$/
-        "#{path}/index.html"
-      else
-        path
       end
     end
 
@@ -76,10 +56,10 @@ class ChatLogServerApp < Sinatra::Base
     end
 
     def room_name(input)
-      if room_name[0] != "#"
-        "##{room_name}"
+      if input[0] != "#"
+        "##{input}"
       else
-        room_name
+        input
       end
     end
 
@@ -135,6 +115,9 @@ class ChatLogServerApp < Sinatra::Base
       send_file path
     elsif File.exist?(File.join(ChatLogServer.root, 'views', erb_path(path)))
       erb erb_path(path).gsub(/\.erb$/, '').to_sym
+    elsif File.extname(path) == '.css' && File.exist?(File.join(ChatLogServer.root, 'views', 'stylesheets', scss_path(path)))
+      content_type 'text/css', :charset => 'utf-8'
+      scss :"stylesheets/#{scss_path(path).gsub(/\.scss$/, '')}", Compass.sass_engine_options
     else
       missing_file_block.call
     end

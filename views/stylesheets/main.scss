@@ -1,0 +1,74 @@
+@import "compass/utilities/general/clearfix";
+
+@mixin breakpoint($point) {
+  @if $point == papa-bear {
+    @media (max-width: 1600px) { @content; }
+  }
+  @else if $point == mama-bear {
+    @media (max-width: 1250px) { @content; }
+  }
+  @else if $point == baby-bear {
+    @media (max-width: 700px)  { @content; }
+  }
+}
+
+@mixin grid-item {
+  float: left;
+  margin-right: 1%;
+}
+
+@mixin monospaced {
+  font-family: Monaco, "Andale Mono", "Courier New", Courier, Lucidatypewriter, Fixed, monospace;
+}
+
+html, body {
+  font-family: Verdana, Arial, sans-serif;
+}
+
+#container {
+  @include breakpoint(papa-bear) { width: 50%; }
+  @include breakpoint(mama-bear) { width: 70%; }
+  @include breakpoint(baby-bear) { width: 95%; }
+  margin: 0 auto;
+}
+
+pre, code, .message {
+  @include monospaced;
+  width: 100%;
+  overflow: scroll;
+  font-size: 0.8em;
+}
+
+.message-item {
+  @include clearfix;
+  padding: 1%;
+  &:nth-child(2n) {
+    background-color: #efefef;
+  }
+  .link {
+    @include grid-item;
+    @include breakpoint(papa-bear) { width: 1%; }
+    @include breakpoint(mama-bear) { width: 1%; }
+    @include breakpoint(baby-bear) { width: 5%; }
+  }
+  .time-container {
+    @include grid-item;
+    @include breakpoint(papa-bear) { width: 22%; }
+    @include breakpoint(mama-bear) { width: 22%; }
+    @include breakpoint(baby-bear) { width: 60%; }
+  }
+  .author {
+    @include grid-item;
+    @include breakpoint(papa-bear) { width: 18%; }
+    @include breakpoint(mama-bear) { width: 18%; }
+    @include breakpoint(baby-bear) { width: 18%; }
+  }
+  .message {
+    @include grid-item;
+    @include monospaced;
+    @include breakpoint(papa-bear) { width: 53%; }
+    @include breakpoint(mama-bear) { width: 53%; }
+    @include breakpoint(baby-bear) { width: 100%; margin: 2% 0; }
+    overflow: auto;
+  }
+}
