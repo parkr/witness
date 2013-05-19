@@ -42,9 +42,12 @@ html, body {
     @include inline-block;
     margin-right: 1%;
   }
+  form, p {
+    @include inline-block;
+  }
 }
 
-#latest_messages, #by_author {
+#latest_messages, #by_author, #in_query {
   margin-top: 0;
 }
 

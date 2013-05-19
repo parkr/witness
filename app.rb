@@ -98,6 +98,15 @@ class ChatLogServerApp < Sinatra::Base
     erb :room
   end
 
+  get('/search') do
+    @query = params[:q].to_s
+    redirect '/' unless @query.size > 0
+    @m = Message.where(['message LIKE ?', "%#{@query}%"])
+          .order('id DESC')
+          .group_by(&:room)
+    erb :search
+  end
+
   get(/.+/) do
     if ChatLogServer::Api.can_handle?(request.path)
       protected! unless request.path.include?("api/auth/failure")

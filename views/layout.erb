@@ -16,6 +16,10 @@
       <% logged_rooms.each do |room| %>
       <h2 id="<%= room %>"><%= link_to room_name(room), room_url(room) %></h2>
       <% end %>
+      <form action="/search" method="get" accept-charset="utf-8">
+        <p><input type="search" name="q" value="<%= @query if @query %>"></p>
+        <p><input type="submit" value="submit"></p>
+      </form>
     </div>
     <%= yield %>
   </div>

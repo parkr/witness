@@ -1,0 +1,15 @@
+<h1 id="in_query"><%= @m.values.flatten.size %> messages for query '<%= @query %>'</h1>
+<% @m.each do |room, messages| %>
+  <h2 id="messages_in_<%= room %>">in <%= link_to room, room_url(room) %></h2>
+  <code class="messages-list">
+    <% messages.each do |m| %>
+    <article class="message-item">
+      <%= link_to "+", message_url(m), class: "link" %>
+      <span class="time-container">[<span class="time"><%= m.at.xmlschema %></span>]</span>
+      <span class="author"><%= m.author %></span>
+      <span class="message"><%= m.message %></span>
+      <br />
+    </article>
+    <% end %>
+  </code>
+<% end %>
