@@ -2,3 +2,4 @@
 /.sass-cache
 /config/auth.yml
 /config/database.yml
+/config/log-server.yml

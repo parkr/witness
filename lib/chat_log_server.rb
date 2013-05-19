@@ -17,7 +17,7 @@ module ChatLogServer
 
   def self.load_configs
     base = Hash.new
-    base = base.merge(load_config_file('log_server.yml'))
+    base = base.merge(load_config_file('log-server.yml'))
     base = base.merge(load_config_file('auth.yml'))
     base = base.merge(load_config_file('database.yml'))
   end
