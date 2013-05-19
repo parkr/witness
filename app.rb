@@ -25,7 +25,9 @@ class ChatLogServerApp < Sinatra::Base
     set :public_folder, Proc.new { File.join(root, "public") }
     set :partial_underscores, true
     set :scss, Compass.sass_engine_options
-    set :default_room, "#jekyll"
+    set :logged_rooms,  ChatLogServer.config('logged_rooms').to_a
+    set :default_room,  ChatLogServer.config('default_room').to_s
+    set :message_limit, ChatLogServer.config('message_print_limit').to_i
     set :database, "mysql2://#{ChatLogServer.config('username')}:#{ChatLogServer.config('password')}"+
                     "@#{ChatLogServer.config('host')}:#{ChatLogServer.config('port')}/#{ChatLogServer.config('database')}"
   end

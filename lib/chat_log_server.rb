@@ -5,7 +5,7 @@ require 'active_record'
 require 'time'
 
 module ChatLogServer
-  ROOT       = File.expand_path("../../", __FILE__)
+  ROOT = File.expand_path("../../", __FILE__)
 
   def self.load_config_file(filename)
     path = File.join(ROOT, 'config', filename)
@@ -17,6 +17,7 @@ module ChatLogServer
 
   def self.load_configs
     base = Hash.new
+    base = base.merge(load_config_file('log_server.yml'))
     base = base.merge(load_config_file('auth.yml'))
     base = base.merge(load_config_file('database.yml'))
   end

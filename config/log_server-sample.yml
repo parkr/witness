@@ -1,0 +1,6 @@
+---
+logged_rooms:
+  - "#hubot"
+  - "#irc"
+default_room: "#irc"
+message_print_limit: 20
