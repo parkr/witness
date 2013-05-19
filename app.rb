@@ -48,26 +48,16 @@ class ChatLogServerApp < Sinatra::Base
       end
     end
 
-    def message_url(message)
-      identifier = case message
-      when Message
-        message.id
-      when Fixnum
-        message
-      end
-      "/messages/#{identifier}"
-    end
-
-    def room_name(input)
-      if input[0] != "#"
-        "##{input}"
-      else
-        input
-      end
+    def logged_rooms
+      @logged_rooms || settings.logged_rooms
     end
 
     def current_room
-      room_name(params[:room] || settings.default_room)
+      room_name(@room || settings.default_room)
+    end
+
+    def message_limit
+      @limit || settings.message_limit
     end
   end
 
@@ -86,6 +76,25 @@ class ChatLogServerApp < Sinatra::Base
     rescue ActiveRecord::RecordNotFound
       Proc.new { 404 }.call
     end
+  end
+
+  get('/messages/by/:author') do |author|
+    begin
+      @limit  = 20
+      @author = author.to_s
+      @m      = Message.where(['author LIKE ?', author])
+                  .limit(@limit)
+                  .order('id DESC')
+                  .group_by(&:room)
+      erb :by_author
+    rescue ActiveRecord::RecordNotFound
+      Proc.new { 404 }.call
+    end
+  end
+
+  get('/room/:name') do |name|
+    @room = name
+    erb :room
   end
 
   get(/.+/) do
