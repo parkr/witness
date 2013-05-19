@@ -1,4 +1,5 @@
 @import "compass/utilities/general/clearfix";
+@import "compass/css3/inline-block";
 
 @mixin breakpoint($point) {
   @if $point == papa-bear {
@@ -30,6 +31,21 @@ html, body {
   @include breakpoint(mama-bear) { width: 70%; }
   @include breakpoint(baby-bear) { width: 95%; }
   margin: 0 auto;
+}
+
+#header {
+  h1 {
+    @include inline-block;
+    margin-right: 3%;
+  }
+  h2 {
+    @include inline-block;
+    margin-right: 1%;
+  }
+}
+
+#latest_messages {
+  margin-top: 0;
 }
 
 pre, code {

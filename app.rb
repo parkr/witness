@@ -39,7 +39,7 @@ class ChatLogServerApp < Sinatra::Base
   helpers ChatLogServer::Helpers::Urls
   helpers do
     def partial(page, options={})
-      html page, options.merge!(:layout => false)
+      erb page, options.merge!(:layout => false)
     end
 
     def load_if_exists(file)
