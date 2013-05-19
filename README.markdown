@@ -1,4 +1,4 @@
-# chat-log-server
+# witness
 
 Log chat messages from any chat room and display them neatly
 
