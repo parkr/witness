@@ -32,9 +32,9 @@ module Witness
   end
 end
 
-require 'chat_log_server/api'
-require 'chat_log_server/active_record_cache'
-require 'chat_log_server/message'
-require 'chat_log_server/helpers/auth'
-require 'chat_log_server/helpers/paths'
-require 'chat_log_server/helpers/urls'
+require 'witness/api'
+require 'witness/active_record_cache'
+require 'witness/message'
+require 'witness/helpers/auth'
+require 'witness/helpers/paths'
+require 'witness/helpers/urls'

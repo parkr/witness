@@ -8,7 +8,7 @@ require 'sinatra/partial'
 require 'sinatra/activerecord'
 
 $:.unshift(File.join(File.dirname(__FILE__), 'lib'))
-require 'chat_log_server'
+require 'witness'
 
 class WitnessApp < Sinatra::Base
 

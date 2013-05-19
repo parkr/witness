@@ -1,5 +1,5 @@
 $:.unshift(File.dirname(__FILE__))
-require 'lib/chat_log_server'
+require 'lib/witness'
 require 'app'
 
 run WitnessApp
