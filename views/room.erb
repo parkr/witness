@@ -1,0 +1,12 @@
+<h1 id="last_<%= message_limit %>_messages">latest <%= message_limit %> messages in <%= current_room %></h1>
+<code class="messages-list">
+  <% Message.latest(message_limit, conditions: ["room = ?", current_room]).each do |m| %>
+  <article class="message-item">
+    <a class="link" href="<%= message_url(m) %>">+</a>
+    <span class="time-container">[<span class="time"><%= m.at.xmlschema %></span>]</span>
+    <span class="author"><%= m.author %></span>
+    <span class="message"><%= m.message %></span>
+    <br />
+  </article>
+  <% end %>
+</code>

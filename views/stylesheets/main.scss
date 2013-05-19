@@ -32,7 +32,7 @@ html, body {
   margin: 0 auto;
 }
 
-pre, code, .message {
+pre, code {
   @include monospaced;
   width: 100%;
   overflow: scroll;

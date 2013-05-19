@@ -1,7 +1,7 @@
 <article class="message">
   <h1 id="message-id">message no. <%= @m.id %></h1>
   <p>
-    Posted by <%= @m.author %> at <%= @m.at %>
+    Posted by <a href="<%= author_url(@m.author) %>"><%= @m.author %></a> at <%= @m.at %>
   </p>
   <div class="monospaced">
     <%= @m.message %>

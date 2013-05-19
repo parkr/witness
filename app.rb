@@ -36,6 +36,7 @@ class ChatLogServerApp < Sinatra::Base
   helpers ::Sinatra::JSON
   helpers ChatLogServer::Helpers::Auth
   helpers ChatLogServer::Helpers::Paths
+  helpers ChatLogServer::Helpers::Urls
   helpers do
     def partial(page, options={})
       html page, options.merge!(:layout => false)
