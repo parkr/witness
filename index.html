@@ -62,6 +62,18 @@ You can optionally provide a <code>limit</code> value in the GET query string.</
 <code>config/auth.yml</code> on the server. If the access token is not there, the requesting service
 will receive a 403 Forbidden response.</p>
 
+<h2>Hubot as Stenographer</h2>
+
+<p>Hubot is an amazing thing, and is particularly well-suited for use with this project.
+Hubot can "listen" to what it hears and act based on what it hears. Luckily for us,
+this hearing is not tied to any term or terms, so we can instruct Hubot to take everything
+it hears and do something with the message.</p>
+
+<p>I created <a href="https://github.com/parkr/stenographer">a stripped-down Hubot</a>, lovingly nick-named
+"stenographer", which sends the appropriate HTTP POST request to Witness's <code>/api/messages/log</code>
+endpoint with each message it hears. Clone it, set a couple environment variables and push
+it up to Heroku and voilà!</p>
+
 <h2>Contribute</h2>
 
 <pre><code>$ # fork on github
@@ -80,7 +92,7 @@ $ # submit a pull request on GitHub to https://github.com/parkr/chat-log-server
 
 <pre><code>The MIT License (MIT)
 
-Copyright (c) 2013 Parker Moore
+Copyright (c) 2013 [Parker Moore](http://parkermoore.de)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
