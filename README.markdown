@@ -6,7 +6,7 @@ Log chat messages from any chat room and display them neatly
 
     $ git clone git://github.com/parkr/chat-log-server.git
     $ cd chat-log-server
-    $ # configure your server conf to point to the public directory in chat-log-server
+    $ # write configuration files based on samples in config/
     $ mkdir public; mkdir tmp # if they don't exist
     $ bundle install
     $ touch tmp/restart.txt
