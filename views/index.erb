@@ -1,12 +1,4 @@
-<h1 id="last_20_messages">latest 20 messages in <%= current_room %></h1>
-<code class="messages-list">
-  <% Message.latest(20, conditions: ["room = ?", current_room]).each do |m| %>
-  <article class="message-item">
-    <a class="link" href="<%= message_url(m) %>">+</a>
-    <span class="time-container">[<span class="time"><%= m.at.xmlschema %></span>]</span>
-    <span class="author"><%= m.author %></span>
-    <span class="message"><%= m.message %></span>
-    <br />
-  </article>
-  <% end %>
-</code>
+<h1 id="irc_logs">irc logs</h1>
+<% logged_rooms.each do |room| %>
+<h2 id="<%= room %>"><%= link_to room_name(room), room_url(room) %></h1>
+<% end %>
