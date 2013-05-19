@@ -31,6 +31,18 @@ All requests to the API must be sent with an `access_token`, which must be inclu
 `config/auth.yml` on the server. If the access token is not there, the requesting service
 will receive a 403 Forbidden response.
 
+## Hubot as Stenographer
+
+Hubot is an amazing thing, and is particularly well-suited for use with this project.
+Hubot can "listen" to what it hears and act based on what it hears. Luckily for us,
+this hearing is not tied to any term or terms, so we can instruct Hubot to take everything
+it hears and do something with the message.
+
+I created [a stripped-down Hubot](https://github.com/parkr/stenographer), lovingly nick-named
+"stenographer", which sends the appropriate HTTP POST request to Witness's `/api/messages/log`
+endpoint with each message it hears. Clone it, set a couple environment variables and push
+it up to Heroku and voilà!
+
 ## Contribute
 
     $ # fork on github
