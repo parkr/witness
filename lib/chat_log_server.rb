@@ -33,6 +33,7 @@ module ChatLogServer
 end
 
 require 'chat_log_server/api'
+require 'chat_log_server/active_record_cache'
 require 'chat_log_server/message'
 require 'chat_log_server/helpers/auth'
 require 'chat_log_server/helpers/paths'

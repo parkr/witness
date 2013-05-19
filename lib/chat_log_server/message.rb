@@ -1,4 +1,6 @@
 class Message < ActiveRecord::Base
+  include ChatLogServer::ActiveRecordCache
+
   attr_accessible :room, :author, :message, :at
 
   def self.latest(num = 10, opts = {})

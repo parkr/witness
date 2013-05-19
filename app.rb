@@ -21,6 +21,7 @@ class ChatLogServerApp < Sinatra::Base
     end
     register Sinatra::Partial
     register Sinatra::ActiveRecordExtension
+    Message.enable_query_caching
     set :partial_template_engine, :erb
     set :public_folder, Proc.new { File.join(root, "public") }
     set :partial_underscores, true
