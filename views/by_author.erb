@@ -1,4 +1,4 @@
-<h1 id="by_author_<%= @author %>">latest <%= @m.values.flatten.size %> messages by <%= @author %></h1>
+<h1 id="by_author">latest <%= @m.values.flatten.size %> messages by <%= @author %></h1>
 <% @m.each do |room, messages| %>
   <h2 id="messages_in_<%= room %>">in <%= link_to room, room_url(room) %></h2>
   <code class="messages-list">
