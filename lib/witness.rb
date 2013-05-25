@@ -36,7 +36,6 @@ module Witness
   end
 end
 
-require 'witness/core_ext'
 require 'witness/api'
 require 'witness/active_record_cache'
 require 'witness/message'
