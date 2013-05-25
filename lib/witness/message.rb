@@ -20,7 +20,7 @@ class Message < ActiveRecord::Base
   end
 
   def self.by_author(author, limit)
-    return [] if Witness.skip_authors.include?(author)
+    return {} if Witness.skip_authors.include?(author)
     without_skipped_authors
       .where(['author LIKE ?', author])
       .limit(limit)
