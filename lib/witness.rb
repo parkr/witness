@@ -27,11 +27,16 @@ module Witness
     @@configs.fetch(key)
   end
 
+  def self.skip_authors
+    config('skip_authors') || []
+  end
+
   def self.root
     File.expand_path("../../", __FILE__)
   end
 end
 
+require 'witness/core_ext'
 require 'witness/api'
 require 'witness/active_record_cache'
 require 'witness/message'

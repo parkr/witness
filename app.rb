@@ -83,10 +83,7 @@ class WitnessApp < Sinatra::Base
     begin
       @limit  = 20
       @author = author.to_s
-      @m      = Message.where(['author LIKE ?', author])
-                  .limit(@limit)
-                  .order('id DESC')
-                  .group_by(&:room)
+      @m      = Message.by_author(@author, @limit)
       erb :by_author
     rescue ActiveRecord::RecordNotFound
       Proc.new { 404 }.call
@@ -101,9 +98,7 @@ class WitnessApp < Sinatra::Base
   get('/search') do
     @query = params[:q].to_s
     redirect '/' unless @query.size > 0
-    @m = Message.where(['message LIKE ?', "%#{@query}%"])
-          .order('id DESC')
-          .group_by(&:room)
+    @m = Message.search(@query)
     erb :search
   end
 
