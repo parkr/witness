@@ -7,7 +7,7 @@
       <%= link_to "+", message_url(m), class: "link" %>
       <span class="time-container">[<span class="time"><%= m.at.xmlschema %></span>]</span>
       <span class="author"><%= m.author %></span>
-      <span class="message"><%= m.message %></span>
+      <span class="message"><%= CGI.escapeHTML(m.message) %></span>
       <br />
     </article>
     <% end %>

@@ -3,6 +3,7 @@ $:.unshift(File.dirname(__FILE__))
 require 'safe_yaml'
 require 'active_record'
 require 'time'
+require 'cgi'
 
 module Witness
   ROOT = File.expand_path("../../", __FILE__)
