@@ -4,8 +4,8 @@ Log chat messages from any chat room and display them neatly
 
 ## Installation
 
-    $ git clone git://github.com/parkr/chat-log-server.git
-    $ cd chat-log-server
+    $ git clone git://github.com/parkr/witness.git
+    $ cd witness
     $ # write configuration files based on samples in config/
     $ mkdir public; mkdir tmp # if they don't exist
     $ bundle install
@@ -46,7 +46,7 @@ it up to Heroku and voilà!
 ## Contribute
 
     $ # fork on github
-    $ git clone git@github.com:<your-username>/chat-log-server.git
+    $ git clone git@github.com:<your-username>/witness.git
     $ bundle install
     $ git checkout -b <my-new-feature-name>
     $ bundle exec rake preview
@@ -54,7 +54,7 @@ it up to Heroku and voilà!
     $ git add <files-you-edited>
     $ git commit -m "<a-short-commit-message>"
     $ git push origin <my-new-feature-name>
-    $ # submit a pull request on GitHub to https://github.com/parkr/chat-log-server
+    $ # submit a pull request on GitHub to https://github.com/parkr/witness
 
 ## License
 
