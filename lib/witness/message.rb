@@ -38,7 +38,7 @@ class Message < ActiveRecord::Base
   end
 
   def previous_context
-    without_skipped_authors
+    Message.without_skipped_authors
       .where("id < ?", id)
       .where("room LIKE ?", room)
       .order("id DESC")
@@ -46,7 +46,7 @@ class Message < ActiveRecord::Base
   end
 
   def post_context
-    without_skipped_authors
+    Message.without_skipped_authors
       .where("id > ?", id)
       .where("room LIKE ?", room)
       .order("id ASC")
