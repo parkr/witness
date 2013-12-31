@@ -13,6 +13,10 @@ module Witness
       }
     }
 
+    def self.escape(text)
+      CGI.escapeHTML(text)
+    end
+
     def self.can_handle?(path)
       path["/api"] && ENDPOINTS.keys.include?(path)
     end
@@ -23,9 +27,9 @@ module Witness
 
     def self.messages_log(req, params)
       Message.new({
-        room:    params["room"].to_s.downcase,
-        author:  params["author"],
-        message: CGI.escapeHTML(params["text"]),
+        room:    escape(params["room"].to_s.downcase),
+        author:  escape(params["author"]),
+        message: escape(params["text"]),
         at:      Time.parse(params["time"])
       }).save!
       params.delete('access_token')
