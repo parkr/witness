@@ -2,7 +2,7 @@ require 'cgi'
 
 class EscapeAllMessages < ActiveRecord::Migration
   def messages_under_consideration
-    Message.where("time <= ?", Time.new(2013, 12, 31, 4, 45))
+    Message.where("at <= ?", Time.new(2013, 12, 31, 4, 45))
   end
 
   def e(s)
