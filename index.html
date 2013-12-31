@@ -31,10 +31,13 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h2>Installation</h2>
+        <p>Log chat messages from any chat room and display them neatly</p>
 
-<pre><code>$ git clone git://github.com/parkr/chat-log-server.git
-$ cd chat-log-server
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>$ git clone git://github.com/parkr/witness.git
+$ cd witness
 $ # write configuration files based on samples in config/
 $ mkdir public; mkdir tmp # if they don't exist
 $ bundle install
@@ -43,7 +46,8 @@ $ touch tmp/restart.txt
 
 <p>You're rearing to go!</p>
 
-<h2>Usage</h2>
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Send HTTP POST requests to <code>/api/messages/log</code> with the following JSON-encoded data:</p>
 
@@ -62,7 +66,8 @@ You can optionally provide a <code>limit</code> value in the GET query string.</
 <code>config/auth.yml</code> on the server. If the access token is not there, the requesting service
 will receive a 403 Forbidden response.</p>
 
-<h2>Hubot as Stenographer</h2>
+<h2>
+<a name="hubot-as-stenographer" class="anchor" href="#hubot-as-stenographer"><span class="octicon octicon-link"></span></a>Hubot as Stenographer</h2>
 
 <p>Hubot is an amazing thing, and is particularly well-suited for use with this project.
 Hubot can "listen" to what it hears and act based on what it hears. Luckily for us,
@@ -74,10 +79,11 @@ it hears and do something with the message.</p>
 endpoint with each message it hears. Clone it, set a couple environment variables and push
 it up to Heroku and voilà!</p>
 
-<h2>Contribute</h2>
+<h2>
+<a name="contribute" class="anchor" href="#contribute"><span class="octicon octicon-link"></span></a>Contribute</h2>
 
 <pre><code>$ # fork on github
-$ git clone git@github.com:&lt;your-username&gt;/chat-log-server.git
+$ git clone git@github.com:&lt;your-username&gt;/witness.git
 $ bundle install
 $ git checkout -b &lt;my-new-feature-name&gt;
 $ bundle exec rake preview
@@ -85,10 +91,11 @@ $ # edit you files, making sure to restart the server every time you edit a Ruby
 $ git add &lt;files-you-edited&gt;
 $ git commit -m "&lt;a-short-commit-message&gt;"
 $ git push origin &lt;my-new-feature-name&gt;
-$ # submit a pull request on GitHub to https://github.com/parkr/chat-log-server
+$ # submit a pull request on GitHub to https://github.com/parkr/witness
 </code></pre>
 
-<h2>License</h2>
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <pre><code>The MIT License (MIT)
 
