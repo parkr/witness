@@ -10,7 +10,7 @@ module Witness
         when Fixnum
           message
         end
-        "/messages/#{identifier}"
+        "/messages/#{identifier}/context"
       end
 
       def author_url(author)

@@ -37,6 +37,21 @@ class Message < ActiveRecord::Base
     end
   end
 
+  def previous_context
+    Message.where("id < ?", id).where("room LIKE ?", room).order("id DESC").limit("0,5")
+  end
+
+  def post_context
+    Message.where("id > ?", id).where("room LIKE ?", room).order("id ASC").limit("0,5")
+  end
+
+  def context
+    [
+      previous_context,
+      post_context
+    ]
+  end
+
   def to_h
     {
       room: room,

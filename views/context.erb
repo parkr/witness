@@ -1,0 +1,27 @@
+<article class="context pre">
+<% @pre.each do |m| %>
+  <div class="message-item">
+    <div class="author"><%= link_to m.author, author_url(m.author) %></div>
+    <span class="time-container">[<span class="time"><%= m.at.xmlschema %></span>]</span>
+    <div class="monospaced"><%= m.message %></div>
+  </div>
+<% end %>
+</article>
+<article class="context message">
+  <h1 id="message-id">message no. <%= @m.id %></h1>
+  <p>
+    Posted by <%= link_to @m.author, author_url(@m.author) %> in <%= link_to @m.room, room_url(@m.room) %> at <%= @m.at %>
+  </p>
+  <div class="monospaced">
+    <%= @m.message %>
+  </div>
+</article>
+<article class="context post">
+<% @post.each do |m| %>
+  <div class="message-item">
+    <div class="author"><%= link_to m.author, author_url(m.author) %></div>
+    <span class="time-container">[<span class="time"><%= m.at.xmlschema %></span>]</span>
+    <div class="monospaced"><%= m.message %></div>
+  </div>
+<% end %>
+</article>

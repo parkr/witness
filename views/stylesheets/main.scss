@@ -91,3 +91,16 @@ pre, code {
     overflow: auto;
   }
 }
+
+.context {
+  margin: 20px 0;
+  &.message {
+    background-color: #faed99;
+  }
+  &.pre, &.post {
+    background-color: #efefef;
+  }
+  .monospaced {
+    @include monospaced;
+  }
+}
