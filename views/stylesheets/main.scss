@@ -92,11 +92,13 @@ pre, code {
   }
 }
 
+.main-message {
+  background-color: #faed99;
+}
+
 .context {
   margin: 20px 0;
-  &.message {
-    background-color: #faed99;
-  }
+  font-size: 0.7em;
   &.pre, &.post {
     background-color: #efefef;
   }
