@@ -38,11 +38,19 @@ class Message < ActiveRecord::Base
   end
 
   def previous_context
-    Message.where("id < ?", id).where("room LIKE ?", room).order("id DESC").limit("0,5")
+    without_skipped_authors
+      .where("id < ?", id)
+      .where("room LIKE ?", room)
+      .order("id DESC")
+      .limit("0,5")
   end
 
   def post_context
-    Message.where("id > ?", id).where("room LIKE ?", room).order("id ASC").limit("0,5")
+    without_skipped_authors
+      .where("id > ?", id)
+      .where("room LIKE ?", room)
+      .order("id ASC")
+      .limit("0,5")
   end
 
   def context
