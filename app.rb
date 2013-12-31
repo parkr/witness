@@ -79,6 +79,16 @@ class WitnessApp < Sinatra::Base
     end
   end
 
+  get('/messages/:id/context') do |id|
+    begin
+      @m = Message.find(id.to_i)
+      @pre, @post = @m.context
+      erb :context
+    rescue ActiveRecord::RecordNotFound
+      Proc.new { 404 }.call
+    end
+  end
+
   get('/messages/by/:author') do |author|
     begin
       @limit  = 20

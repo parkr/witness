@@ -23,10 +23,10 @@ module Witness
 
     def self.messages_log(req, params)
       Message.new({
-        room: params["room"],
-        author: params["author"],
-        message: params["text"],
-        at: Time.parse(params["time"])
+        room:    params["room"].to_s.downcase,
+        author:  params["author"],
+        message: CGI.escapeHTML(params["text"]),
+        at:      Time.parse(params["time"])
       }).save!
       params.delete('access_token')
       params
