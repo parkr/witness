@@ -2,6 +2,8 @@
 
 Log chat messages from any chat room and display them neatly
 
+**If you're interested in an API-only version of this, I have one called [gossip, written in Go](https://github.com/parkr/gossip).**
+
 ## Installation
 
     $ git clone git://github.com/parkr/witness.git
