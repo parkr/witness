@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'rake', '~> 10.0'
+gem 'rake', '~> 12.3'
 gem 'thin', '~> 1.5'
 gem 'mysql2'
 gem 'sinatra', '~> 1.3'
