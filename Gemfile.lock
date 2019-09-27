@@ -41,7 +41,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rake (12.3.3)
+    rake (13.0.0)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -83,7 +83,7 @@ DEPENDENCIES
   compass (~> 0.12.2)
   mysql2
   passenger
-  rake (~> 12.3)
+  rake (~> 13.0)
   rspec
   safe_yaml
   sinatra (~> 1.3)
