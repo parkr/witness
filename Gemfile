@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem 'rake', '~> 13.0'
-gem 'thin', '~> 1.5'
+gem 'thin', '~> 1.7'
 gem 'mysql2'
 gem 'sinatra', '~> 1.3'
 gem 'sinatra-activerecord', '~> 1.2.2'
