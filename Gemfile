@@ -9,7 +9,7 @@ gem 'sinatra-partial', '~> 0.4'
 gem 'sinatra-contrib', '~> 1.3.2'
 gem 'passenger'
 gem 'coffee-script', '~> 2.2.0'
-gem 'compass', '~> 0.12.2'
+gem 'compass', '~> 1.0.3'
 gem 'safe_yaml'
 
 group :test do
