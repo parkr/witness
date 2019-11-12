@@ -8,7 +8,7 @@ gem 'sinatra-activerecord', '~> 1.2.2'
 gem 'sinatra-partial', '~> 0.4'
 gem 'sinatra-contrib', '~> 1.3.2'
 gem 'passenger'
-gem 'coffee-script', '~> 2.2.0'
+gem 'coffee-script', '~> 2.4.1'
 gem 'compass', '~> 0.12.2'
 gem 'safe_yaml'
 
